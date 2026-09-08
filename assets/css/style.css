@@ -249,6 +249,7 @@ select:focus-visible {
 
 .btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(8, 59, 92, 0.14);
 }
 
 .btn-primary {
@@ -258,6 +259,7 @@ select:focus-visible {
 }
 .btn-primary:hover {
   background: var(--primary-dark);
+  box-shadow: 0 16px 36px rgba(20, 103, 154, 0.36);
 }
 
 .btn-outline {
@@ -285,6 +287,7 @@ select:focus-visible {
 }
 .btn-ghost-inverse:hover {
   background: rgba(255, 255, 255, 0.12);
+  box-shadow: none;
 }
 
 .btn-block { width: 100%; }
@@ -365,6 +368,15 @@ select:focus-visible {
 .main-nav a:hover::after,
 .main-nav a[aria-current="page"]::after {
   right: 0;
+}
+
+.main-nav a[aria-current="page"] {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.mobile-nav a[aria-current="page"] {
+  color: var(--primary);
 }
 
 .header-actions {
@@ -785,7 +797,7 @@ select:focus-visible {
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 14px 46px rgba(8, 59, 92, 0.12);
 }
 
 .card--ice { background: var(--ice); border-color: transparent; }
@@ -1051,6 +1063,20 @@ select:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
+  isolation: isolate;
+  z-index: 0;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(8, 59, 92, 0.06);
+}
+
+.locator-map.leaflet-container {
+  background: var(--ice);
+  cursor: default !important;
+}
+
+.locator-map .leaflet-control-attribution {
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .locator-map__note {
@@ -1217,7 +1243,7 @@ select:focus-visible {
   transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
 }
 
-.edu-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+.edu-card:hover { transform: translateY(-4px); box-shadow: 0 14px 46px rgba(8, 59, 92, 0.12); }
 
 .edu-card__media {
   aspect-ratio: 16/10;
@@ -1393,31 +1419,11 @@ select:focus-visible {
 }
 
 /* ============================================================
-   Breadcrumbs
-   ============================================================ */
-
-.breadcrumbs {
-  padding: calc(var(--header-h) + var(--space-5)) 0 var(--space-3);
-}
-
-.breadcrumbs ol {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  font-size: 13.5px;
-  color: var(--muted);
-}
-
-.breadcrumbs a { color: var(--muted); font-weight: 600; }
-.breadcrumbs a:hover { color: var(--primary); }
-.breadcrumbs li:not(:last-child)::after { content: "/"; margin-left: 6px; color: rgba(98,125,138,0.5); }
-
-/* ============================================================
    Page header (subpages)
    ============================================================ */
 
 .page-hero {
-  padding: var(--space-6) 0 var(--space-8);
+  padding: calc(var(--header-h) + var(--space-6)) 0 var(--space-8);
   background: linear-gradient(180deg, var(--ice), var(--white));
 }
 
