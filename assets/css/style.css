@@ -590,13 +590,15 @@ select:focus-visible {
 }
 
 /* ============================================================
-   3D Bite Viewer (progressive-enhancement placeholder)
+   Bite Viewer — product photo, progressive-enhancement wrapper.
+   Swap the <img> for a real <canvas>/GLB viewer later without
+   touching the surrounding markup or the mouse-tilt interaction.
    ============================================================ */
 
 .bite-viewer {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 2;
   max-width: 460px;
   margin: 0 auto;
   display: flex;
@@ -617,8 +619,11 @@ select:focus-visible {
 
 .bite-model {
   position: relative;
-  width: 62%;
-  aspect-ratio: 1.15 / 1;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(8, 59, 92, 0.22);
   transform-style: preserve-3d;
   transition: transform 0.15s linear;
   animation: bite-float 7s ease-in-out infinite;
@@ -627,43 +632,20 @@ select:focus-visible {
 
 .bite-model:active { cursor: grabbing; }
 
+.bite-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 @keyframes bite-float {
-  0%, 100% { transform: translateY(0) rotateX(14deg) rotateY(-18deg); }
-  50% { transform: translateY(-16px) rotateX(14deg) rotateY(-18deg); }
+  0%, 100% { transform: translateY(0) rotateX(6deg) rotateY(-8deg); }
+  50% { transform: translateY(-14px) rotateX(6deg) rotateY(-8deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bite-model { animation: none; transform: rotateX(14deg) rotateY(-18deg); }
-}
-
-.bite-arch {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 100%;
-  height: 58%;
-  border-radius: 50% 50% 46% 46% / 60% 60% 40% 40%;
-  background: linear-gradient(160deg, #ffffff, var(--light-blue) 60%, var(--primary) 140%);
-  box-shadow: inset 0 -6px 14px rgba(8, 59, 92, 0.18), 0 30px 50px rgba(8, 59, 92, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-}
-
-.bite-arch--upper {
-  transform: translate(-50%, -92%) rotateX(0deg) translateZ(18px);
-}
-
-.bite-arch--lower {
-  transform: translate(-50%, -8%) rotateX(180deg) translateZ(-18px);
-  background: linear-gradient(160deg, var(--ice), #ffffff 55%, var(--light-blue) 140%);
-  opacity: 0.96;
-}
-
-.bite-glow {
-  position: absolute;
-  inset: -20%;
-  background: radial-gradient(circle, rgba(232, 160, 106, 0.22), transparent 65%);
-  filter: blur(6px);
-  z-index: -1;
+  .bite-model { animation: none; transform: none; }
 }
 
 /* ============================================================
@@ -705,6 +687,12 @@ select:focus-visible {
   background-size: cover;
   background-position: center;
   z-index: -1;
+}
+
+/* Relative url() in a custom property resolves against this stylesheet,
+   not the HTML file, so real photo slides get their own rule here. */
+.media-slide--bite-photo::before {
+  background-image: linear-gradient(180deg, transparent 40%, rgba(8, 27, 41, 0.65) 100%), url("../img/demoBiteImage.jpg");
 }
 
 .media-slide__label {

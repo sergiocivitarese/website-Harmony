@@ -181,10 +181,6 @@
       var model = viewer.querySelector(".bite-model");
       if (!model || prefersReducedMotion) return;
 
-      var isDragging = false;
-      var rotX = 14;
-      var rotY = -18;
-
       function applyManual(rx, ry) {
         model.style.animation = "none";
         model.style.transform = "rotateX(" + rx + "deg) rotateY(" + ry + "deg)";
@@ -194,7 +190,7 @@
         var rect = viewer.getBoundingClientRect();
         var px = (e.clientX - rect.left) / rect.width - 0.5;
         var py = (e.clientY - rect.top) / rect.height - 0.5;
-        applyManual(14 - py * 20, -18 + px * 40);
+        applyManual(6 - py * 12, -8 + px * 20);
       });
 
       viewer.addEventListener("pointerleave", function () {
