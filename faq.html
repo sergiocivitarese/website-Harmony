@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FAQ — Domande frequenti su HARMONY</title>
+<meta name="description" content="Le risposte alle domande più frequenti su bite dentali, percorso HARMONY, professionisti e partnership." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.harmony-health.it/faq" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="FAQ — Domande frequenti su HARMONY" />
+<meta property="og:description" content="Le risposte alle domande più frequenti su bite dentali, percorso HARMONY, professionisti e partnership." />
+<meta property="og:url" content="https://www.harmony-health.it/faq" />
+<meta property="og:image" content="/assets/img/og-default.jpg" />
+<meta property="og:locale" content="it_IT" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314679A'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='bold' font-size='16' fill='white' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+
+</head>
+<body>
+<a class="skip-link" href="#main">Vai al contenuto principale</a>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">HARMONY</a>
+    <nav class="main-nav" aria-label="Navigazione principale">
+      <ul>
+        <li><a href="il-metodo.html">Il metodo</a></li>
+        <li><a href="come-funziona.html">Come funziona</a></li>
+        <li><a href="trova-dentista.html">Trova un dentista</a></li>
+        <li><a href="professionisti.html">Per professionisti</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="contatti.html" class="btn btn-primary header-cta">Richiedi un consulto</a>
+      <button class="nav-toggle" aria-label="Apri il menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" aria-label="Navigazione mobile">
+  <ul>
+    <li><a href="il-metodo.html">Il metodo</a></li>
+    <li><a href="come-funziona.html">Come funziona</a></li>
+    <li><a href="trova-dentista.html">Trova un dentista</a></li>
+    <li><a href="professionisti.html">Per professionisti</a></li>
+    <li><a href="guide/index.html">Guide</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+  <a href="contatti.html" class="btn btn-primary btn-block">Richiedi un consulto</a>
+</nav>
+
+<div class="breadcrumbs container">
+  <ol>
+    <li><a href="index.html">Home</a></li>
+    <li>FAQ</li>
+  </ol>
+</div>
+
+<main id="main">
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Domande frequenti</p>
+      <h1>Le domande più comuni su HARMONY</h1>
+      <p class="lede">Se non trovi la risposta che cerchi, puoi <a href="contatti.html" style="color:var(--primary); font-weight:700;">contattarci direttamente</a>.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container" style="max-width:820px">
+      <div class="faq-list" id="faq-list" data-reveal></div>
+    </div>
+  </section>
+
+  <script src="assets/js/data.js"></script>
+  <script>
+    (function () {
+      var list = document.getElementById("faq-list");
+      if (!list || !window.HARMONY_DATA) return;
+      window.HARMONY_DATA.faq.forEach(function (item) {
+        var el = document.createElement("div");
+        el.className = "faq-item";
+        el.innerHTML =
+          '<button class="faq-question" aria-expanded="false">' + item.q + '<span class="plus">+</span></button>' +
+          '<div class="faq-answer"><div class="faq-answer-inner">' + item.a + '</div></div>';
+        list.appendChild(el);
+      });
+    })();
+  </script>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">HARMONY</a>
+        <p>Un approccio medical-tech che mette in relazione dentatura, occlusione e postura.</p>
+        <div class="footer-social" style="margin-top:24px">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="LinkedIn">IN</a>
+          <a href="#" aria-label="Facebook">FB</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Pazienti</h5>
+        <ul>
+          <li><a href="il-metodo.html">Il metodo</a></li>
+          <li><a href="come-funziona.html">Come funziona</a></li>
+          <li><a href="trova-dentista.html">Trova un professionista</a></li>
+          <li><a href="contatti.html">Richiedi un consulto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Professionisti</h5>
+        <ul>
+          <li><a href="diventa-partner.html">Diventa partner</a></li>
+          <li><a href="professionisti.html">Lavora con noi</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Risorse</h5>
+        <ul>
+          <li><a href="guide/index.html">Guide</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Azienda</h5>
+        <ul>
+          <li><a href="contatti.html">Contatti</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="cookie-policy.html">Cookie</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 HARMONY. Tutti i diritti riservati. — P.IVA e sede legale: da definire.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="consent-banner" data-consent-banner>
+  <p>Utilizziamo cookie tecnici necessari al funzionamento del sito e, previo consenso, cookie analitici e di marketing. Consulta la <a href="cookie-policy.html">Cookie Policy</a>.</p>
+  <div class="consent-actions">
+    <button class="btn btn-primary" data-consent-accept>Accetta tutti</button>
+    <button class="btn btn-outline" data-consent-reject>Solo necessari</button>
+  </div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
