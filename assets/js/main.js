@@ -172,35 +172,6 @@
   }
 
   /* ---------------------------------------------------------
-     3D-style Bite Viewer (CSS 3D placeholder, progressive
-     enhancement — swap the markup for a real <canvas> / GLB
-     viewer later without touching the rest of the page)
-     --------------------------------------------------------- */
-  function initByteViewer() {
-    document.querySelectorAll(".bite-viewer").forEach(function (viewer) {
-      var model = viewer.querySelector(".bite-model");
-      if (!model || prefersReducedMotion) return;
-
-      function applyManual(rx, ry) {
-        model.style.animation = "none";
-        model.style.transform = "rotateX(" + rx + "deg) rotateY(" + ry + "deg)";
-      }
-
-      viewer.addEventListener("pointermove", function (e) {
-        var rect = viewer.getBoundingClientRect();
-        var px = (e.clientX - rect.left) / rect.width - 0.5;
-        var py = (e.clientY - rect.top) / rect.height - 0.5;
-        applyManual(6 - py * 12, -8 + px * 20);
-      });
-
-      viewer.addEventListener("pointerleave", function () {
-        model.style.animation = "";
-        model.style.transform = "";
-      });
-    });
-  }
-
-  /* ---------------------------------------------------------
      FAQ accordion
      --------------------------------------------------------- */
   function initFaq() {
@@ -252,68 +223,8 @@
     var geoBtn = root.querySelector("[data-locator-geo]");
     var searchBtn = root.querySelector("[data-locator-search]");
     var resultsWrap = root.querySelector("[data-locator-results]");
-    var mapRoot = root.querySelector("[data-locator-map]");
     var dentists = window.HARMONY_DATA.dentists;
     var userCoords = null;
-
-    var leafletMap = null;
-    var markers = [];
-    var userMarker = null;
-
-    // Fixed to Italy, display-only: no drag/zoom/scroll — just the
-    // real location of each professional shown as a point.
-    var ITALY_BOUNDS = [
-      [36.4, 6.4],
-      [47.3, 18.7],
-    ];
-
-    function ensureMap() {
-      if (!mapRoot || typeof L === "undefined" || leafletMap) return;
-      leafletMap = L.map(mapRoot, {
-        zoomControl: false,
-        attributionControl: true,
-        dragging: false,
-        scrollWheelZoom: false,
-        doubleClickZoom: false,
-        boxZoom: false,
-        keyboard: false,
-        touchZoom: false,
-        tap: false,
-      });
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", {
-        minZoom: 5,
-        maxZoom: 8,
-        subdomains: "abcd",
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      }).addTo(leafletMap);
-      leafletMap.fitBounds(ITALY_BOUNDS, { padding: [10, 10] });
-
-      // Container may not have final size yet on first paint.
-      setTimeout(function () {
-        leafletMap.invalidateSize();
-        leafletMap.fitBounds(ITALY_BOUNDS, { padding: [10, 10] });
-      }, 250);
-    }
-
-    function renderMarkers(list) {
-      if (!leafletMap) return;
-      markers.forEach(function (m) {
-        leafletMap.removeLayer(m);
-      });
-      markers = [];
-      list.forEach(function (d) {
-        var marker = L.circleMarker([d.lat, d.lng], {
-          radius: 7,
-          weight: 2,
-          color: "#ffffff",
-          fillColor: "#14679A",
-          fillOpacity: 1,
-        })
-          .addTo(leafletMap)
-          .bindPopup("<strong>" + d.name + "</strong><br>" + d.address, { autoPan: false });
-        markers.push(marker);
-      });
-    }
 
     function initials(name) {
       return name
@@ -380,7 +291,6 @@
         });
       }
       render(list);
-      renderMarkers(list);
     }
 
     if (searchBtn) {
@@ -411,18 +321,6 @@
               lat: pos.coords.latitude,
               lng: pos.coords.longitude,
             };
-            if (leafletMap) {
-              if (userMarker) leafletMap.removeLayer(userMarker);
-              userMarker = L.circleMarker([userCoords.lat, userCoords.lng], {
-                radius: 8,
-                color: "#ffffff",
-                weight: 2,
-                fillColor: "#E8A06A",
-                fillOpacity: 1,
-              })
-                .addTo(leafletMap)
-                .bindPopup("La tua posizione", { autoPan: false });
-            }
             geoBtn.disabled = false;
             geoBtn.textContent = "Usa la mia posizione";
             search();
@@ -436,9 +334,7 @@
       });
     }
 
-    ensureMap();
     render(dentists);
-    renderMarkers(dentists);
   }
 
   /* ---------------------------------------------------------
@@ -577,7 +473,6 @@
     initHeader();
     initReveal();
     initMediaSliders();
-    initByteViewer();
     initFaq();
     initDentistLocator();
     initForm('[data-form="patient"]', "Richiesta ricevuta. Un professionista HARMONY ti contatterà a breve.");

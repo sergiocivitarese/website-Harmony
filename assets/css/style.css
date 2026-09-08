@@ -323,10 +323,29 @@ select:focus-visible {
 }
 
 .site-header .container {
-  display: flex;
+  /* As a flex child of .site-header, this box would otherwise shrink
+     to its content's width and end up centered with large empty
+     margins on both sides — width:100% makes it actually span the
+     header (up to the shared max-width), so the grid below can put
+     the wordmark and CTA at its true left/right edges. */
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-6);
+  /* Deliberately narrower than the shared .container padding, so the
+     wordmark and CTA sit closer to the edges of the header bar. */
+  padding-left: var(--space-5);
+  padding-right: var(--space-5);
+}
+
+/* Explicit column placement: without it, grid auto-placement shifts
+   .header-actions into the middle track on mobile, where .main-nav
+   is display:none and so isn't there to occupy column 2. */
+.site-header .container > .brand { grid-column: 1; }
+.site-header .container > .main-nav { grid-column: 2; }
+.site-header .container > .header-actions {
+  grid-column: 3;
 }
 
 .brand {
@@ -460,7 +479,7 @@ select:focus-visible {
 }
 
 @media (min-width: 1080px) {
-  .main-nav { display: block; }
+  .main-nav { display: flex; justify-content: center; }
   .header-cta { display: inline-flex; }
   .nav-toggle { display: none; }
   .mobile-nav { display: none; }
@@ -590,31 +609,20 @@ select:focus-visible {
 }
 
 /* ============================================================
-   Bite Viewer — product photo, progressive-enhancement wrapper.
-   Swap the <img> for a real <canvas>/GLB viewer later without
-   touching the surrounding markup or the mouse-tilt interaction.
+   Bite Viewer — static product photo card. No tilt/rotation:
+   a flat photo reads as distorted under a fake 3D transform, so
+   this is intentionally a plain, still image in a rounded frame.
    ============================================================ */
 
 .bite-viewer {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 2;
-  max-width: 460px;
+  max-width: 368px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1200px;
-}
-
-.bite-viewer__fallback-text {
-  position: absolute;
-  bottom: -34px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 13px;
-  color: var(--muted);
 }
 
 .bite-model {
@@ -624,28 +632,13 @@ select:focus-visible {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 30px 60px rgba(8, 59, 92, 0.22);
-  transform-style: preserve-3d;
-  transition: transform 0.15s linear;
-  animation: bite-float 7s ease-in-out infinite;
-  cursor: grab;
 }
-
-.bite-model:active { cursor: grabbing; }
 
 .bite-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-@keyframes bite-float {
-  0%, 100% { transform: translateY(0) rotateX(6deg) rotateY(-8deg); }
-  50% { transform: translateY(-14px) rotateX(6deg) rotateY(-8deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bite-model { animation: none; transform: none; }
 }
 
 /* ============================================================
@@ -1051,20 +1044,6 @@ select:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  isolation: isolate;
-  z-index: 0;
-  box-shadow: var(--shadow-card);
-  border: 1px solid rgba(8, 59, 92, 0.06);
-}
-
-.locator-map.leaflet-container {
-  background: var(--ice);
-  cursor: default !important;
-}
-
-.locator-map .leaflet-control-attribution {
-  font-size: 10px;
-  background: rgba(255, 255, 255, 0.7);
 }
 
 .locator-map__note {
