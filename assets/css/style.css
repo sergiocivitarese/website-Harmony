@@ -900,6 +900,7 @@ select:focus-visible {
 
 @media (min-width: 900px) {
   .process-steps { grid-template-columns: repeat(4, 1fr); }
+  .process-steps--3col { grid-template-columns: repeat(3, 1fr); }
 }
 
 .process-step {
@@ -1025,6 +1026,20 @@ select:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Contains Leaflet's internal z-index (up to 1000 for controls) so
+     it can never float above the fixed header/consent banner. */
+  isolation: isolate;
+  z-index: 0;
+}
+
+.locator-map.leaflet-container {
+  background: var(--ice);
+  cursor: default !important;
+}
+
+.locator-map .leaflet-control-attribution {
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .locator-map__note {

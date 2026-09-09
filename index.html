@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/css/style.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -177,7 +178,7 @@
           <p class="eyebrow">Il prodotto</p>
           <h2 style="font-size: clamp(30px,4.4vw,48px)">Non è solo<br />un bite.</h2>
           <p class="text-muted" style="margin-top:16px; font-size:17px; max-width:480px;">Il bite HARMONY è pensato come un dispositivo di precisione, il risultato di un processo digitale e di una valutazione clinica personalizzata — non un semplice accessorio standard.</p>
-          <div class="process-steps" style="grid-template-columns:repeat(3,1fr); margin-top:32px;">
+          <div class="process-steps process-steps--3col" style="margin-top:32px;">
             <div class="process-step"><span class="step-index">01</span><h3>Precisione</h3><p>Progettato sulla base di dati raccolti in fase di valutazione.</p></div>
             <div class="process-step"><span class="step-index">02</span><h3>Personalizzazione</h3><p>Adattato alle caratteristiche individuali del paziente.</p></div>
             <div class="process-step"><span class="step-index">03</span><h3>Approccio professionale</h3><p>Realizzato con il supporto di un professionista qualificato.</p></div>
@@ -249,12 +250,7 @@
           </div>
           <div class="locator-results" data-locator-results></div>
         </div>
-        <div class="locator-map">
-          <div class="map-pin" style="top:38%; left:44%;"></div>
-          <div class="map-pin" style="top:56%; left:62%;"></div>
-          <div class="map-pin" style="top:70%; left:30%;"></div>
-          <div class="locator-map__note">Mappa dimostrativa — l'integrazione con un provider di mappe reale verrà aggiunta in seguito.</div>
-        </div>
+        <div class="locator-map" data-locator-map></div>
       </div>
       <div class="text-center" style="margin-top:40px">
         <a href="trova-dentista.html" class="btn btn-outline">Vedi tutti i professionisti</a>
@@ -452,6 +448,7 @@
   </div>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
